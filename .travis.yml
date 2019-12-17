@@ -1,35 +1,17 @@
 ---
 language: python
-python: "2.7"
+cache: pip
 
-# Use the new container infrastructure
-sudo: false
-
-# Install ansible
-addons:
-  apt:
-    packages:
-      - python-pip
+env:
+  matrix:
+    - MOLECULE_DISTRO: debian10
 
 install:
-  # Install ansible
-  - pip install ansible ansible-lint
-
-  # Check ansible version
-  - ansible --version
-
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
-
-  # Compensate for repo name being different to the role
-  - ln -s $(pwd) ../stackhpc.libvirt-vm
+  # Install test dependencies.
+  - pip install molecule docker
 
 script:
-  # Run Ansible lint against the role
-  - ansible-lint tasks/main.yml
-
-  # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -21,4 +21,3 @@
     mode: 0644
   loop: "{{ network_interfaces_d|dict2items }}"
   notify: restart networking
-

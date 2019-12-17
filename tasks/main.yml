@@ -1,0 +1,24 @@
+---
+
+- name: copy network interfaces config
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 0644
+    backup: True
+  when: network_interfaces is defined or
+        network_interfaces_d.keys()|length > 0
+  notify: restart networking
+
+- name: copy includes for /etc/network/interfaces.d/
+  template:
+    src: interface.j2
+    dest: "/etc/network/interfaces.d/{{ item.key }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ network_interfaces_d|dict2items }}"
+  notify: restart networking
+

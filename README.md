@@ -1,7 +1,6 @@
 ansible-role-network
 =========
 [![Build Status](https://travis-ci.org/t2d/ansible-role-network.svg?branch=master)](https://travis-ci.org/t2d/ansible-role-network)
-
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-network-blue.svg)](https://galaxy.ansible.com/t2d/network/)
 
 Configure network interfaces with multi-line strings
@@ -10,7 +9,8 @@ Role Variables
 --------------
 
 ```
-network_interfaces_d: {}
+network_interfaces: undefined  # Set to configure in /etc/network/interfaces
+network_interfaces_d: {}  # Set to configure in /etc/network/interfaces.d
 ```
 
 Download

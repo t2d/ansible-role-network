@@ -1,3 +1,4 @@
 ---
 
 network_interfaces_d: {}
+network_handler: clear_facts

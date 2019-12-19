@@ -4,3 +4,10 @@
   service:
     name: networking
     state: restarted
+
+- name: reboot
+  reboot:
+
+- name: clear_facts
+  meta: clear_facts
+  failed_when: False

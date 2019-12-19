@@ -10,7 +10,7 @@
     backup: True
   when: network_interfaces is defined or
         network_interfaces_d.keys()|length > 0
-  notify: restart networking
+  notify: "{{ network_handler }}"
 
 - name: copy includes for /etc/network/interfaces.d/
   template:
@@ -20,4 +20,4 @@
     group: root
     mode: 0644
   loop: "{{ network_interfaces_d|dict2items }}"
-  notify: restart networking
+  notify: "{{ network_handler }}"

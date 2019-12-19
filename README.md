@@ -11,7 +11,10 @@ Role Variables
 ```
 network_interfaces: undefined  # Set to configure in /etc/network/interfaces
 network_interfaces_d: {}  # Set to configure in /etc/network/interfaces.d
+network_handler: clear_facts
 ```
+
+Other options for `network_handler` are `reboot` and `restart networking`.
 
 Download
 --------
